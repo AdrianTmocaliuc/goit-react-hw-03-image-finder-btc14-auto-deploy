@@ -2,7 +2,7 @@
   "name": "start-react-template",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://AdrianTmocaliuc.github.io/start-react-template",
+  "homepage": "https://AdrianTmocaliuc.github.io/goit-react-hw-03-image-finder-btc14-auto-deploy",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.0.1",
