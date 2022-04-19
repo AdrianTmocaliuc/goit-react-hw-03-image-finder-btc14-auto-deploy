@@ -4,7 +4,6 @@ import ImageGalleryItem from "./../ImageGalleryItem/ImageGalleryItem";
 import Modal from "components/Modal/Modal";
 import Loader from "components/Loader/Loader";
 import Button from "components/Button/Button";
-import { Rings } from "react-loader-spinner";
 
 class ImageGallery extends Component {
   state = {
@@ -19,21 +18,20 @@ class ImageGallery extends Component {
   toggleModal = () => {
     this.setState({ modalShow: !this.state.modalShow });
   };
-  // toggleLoader = () => {
-  //   this.setState({ loader: !this.state.loadMore });
-  // };
 
   render() {
     const { largeImage, modalShow } = this.state;
-    const { images, loadMore, onClickLoadMore } = this.props;
+    const { images, loadMore, onClickLoadMore, totalImages } = this.props;
     const { onClickImage, toggleModal } = this;
+    console.log(images.length);
+    console.log(totalImages);
 
     return (
       <>
         <ul className={s.imageGallery}>
           <ImageGalleryItem images={images} onClick={onClickImage} />
         </ul>
-        {loadMore ? (
+        {images.length === totalImages ? null : loadMore ? (
           <Button onClick={onClickLoadMore}>Load more...</Button>
         ) : (
           <Loader />

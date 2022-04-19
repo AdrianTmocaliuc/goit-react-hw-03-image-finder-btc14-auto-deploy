@@ -1,11 +1,12 @@
 import s from "./ImageGalleryItem.module.scss";
+import { nanoid } from "nanoid";
 
 const ImageGalleryItem = ({ images, onClick }) => {
-  // console.log(images);
   return images.map((image) => {
+    // console.log(image.id, image.user_id);
     return (
       <li
-        key={image.id}
+        key={nanoid()}
         id={image.largeImageURL}
         className={s.ImageGalleryItem}
         onClick={onClick}

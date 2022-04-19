@@ -22,7 +22,6 @@ class Modal extends Component {
   };
   render() {
     const { largeImage } = this.props;
-    console.log(largeImage);
     return (
       <div className={s.Overlay} onClick={this.closeOnBackDropClick}>
         <div className={s.Modal}>

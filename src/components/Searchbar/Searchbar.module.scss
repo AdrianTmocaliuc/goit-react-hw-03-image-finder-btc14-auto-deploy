@@ -43,12 +43,20 @@
     outline: none;
 }
 
-.SearchForm_button:hover {
-    // opacity: 1;
+.SearchForm-button:hover {
+    opacity: 1;
 }
 
-.SearchForm_button_label {
-    font-size: 30px;
+.SearchForm-button-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+    border: 0;
 }
 
 .SearchForm_input {

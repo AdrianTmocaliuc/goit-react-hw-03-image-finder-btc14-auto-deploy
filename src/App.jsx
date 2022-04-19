@@ -3,6 +3,8 @@ import PicApiPixabay from "Services/SearchImagesAPI";
 import Searchbar from "components/Searchbar/Searchbar";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import Loader from "./components/Loader/Loader";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
+// import Notify from "simple-notify";
 
 const pictures = new PicApiPixabay();
 
@@ -10,6 +12,7 @@ const keyStatus = {
   loading: "loading",
   update: "update",
   error: "error",
+  bad: "bad",
   results: "results",
 };
 
@@ -19,25 +22,24 @@ class App extends Component {
     loadMore: false,
     inputText: "",
     status: keyStatus.update,
+    totalImages: 0,
   };
 
   async componentDidMount() {
     this.setState({ status: keyStatus.loading });
-    const { totalHits, hits } = await pictures.getPics();
+    const { total, totalHits, hits } = await pictures.getPics();
 
-    if (!hits) {
-      this.setState({ status: keyStatus.error });
-      return;
-    }
     this.setState({
       images: hits,
       loadMore: true,
-      status: keyStatus.update,
-
-      // loadMore: totalHits <= 3 ? false : true,
+      status: hits ? keyStatus.update : keyStatus.bad,
+      totalImages: totalHits,
     });
+    Notify.success(`We've got ${total} results `);
   }
+
   async componentDidUpdate(prevProps, prevState) {
+    const { inputText, totalImages } = this.state;
     const checkState = prevState.inputText !== this.state.inputText;
 
     if (checkState) {
@@ -47,15 +49,14 @@ class App extends Component {
 
       this.setState({
         images: hits,
-        loadMore: true,
-        // loadMore: totalHits <= 25 ? false : true,
-        status: keyStatus.update,
+        loadMore: totalHits <= 12 ? false : true,
+        status: !!hits.length ? keyStatus.update : keyStatus.bad,
+        totalImages: totalHits,
       });
-      return;
-    }
-    if (this.state.images === []) {
-      this.setState({ status: keyStatus.error });
-      return;
+
+      if (!!hits.length) {
+        Notify.success(`We've got ${totalHits} results `);
+      }
     }
   }
 
@@ -66,15 +67,18 @@ class App extends Component {
   onClickLoadMore = async () => {
     this.setState({ loadMore: false });
     pictures.incrementPage();
-    const { hits } = await pictures.getPics();
+    const { totalHits, hits } = await pictures.getPics();
+    const totalImages = this.state.images.length + 12;
 
-    this.setState({ images: [...this.state.images, ...hits], loadMore: true });
+    this.setState({
+      images: [...this.state.images, ...hits],
+      loadMore: totalImages >= totalHits ? false : true,
+    });
   };
 
   render() {
-    const { images, loadMore, status } = this.state;
+    const { images, loadMore, status, inputText, totalImages } = this.state;
     const { onClickLoadMore, onSubmitForm } = this;
-    // console.log(results);
 
     return (
       <div className="App">
@@ -84,10 +88,15 @@ class App extends Component {
             images={images}
             loadMore={loadMore}
             onClickLoadMore={onClickLoadMore}
+            totalImages={totalImages}
           />
         )}
         {status === keyStatus.loading && <Loader />}
-        {status === keyStatus.error && <h3>Nothing Found...</h3>}
+        {status === keyStatus.bad && (
+          <h2 style={{ margin: "0 auto" }}>
+            On "{inputText}" nothing found &#x2639;
+          </h2>
+        )}
       </div>
     );
   }
