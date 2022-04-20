@@ -1,6 +1,7 @@
 import { Component } from "react";
 import s from "./Searchbar.module.scss";
 import { BiSearchAlt } from "react-icons/bi";
+import PropTypes from "prop-types";
 
 class Searchbar extends Component {
   state = {
@@ -49,3 +50,7 @@ class Searchbar extends Component {
 }
 
 export default Searchbar;
+
+Searchbar.propTypes = {
+  inputText: PropTypes.string.isRequired,
+};

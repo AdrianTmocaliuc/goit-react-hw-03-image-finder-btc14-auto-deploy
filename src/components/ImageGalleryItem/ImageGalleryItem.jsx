@@ -1,5 +1,6 @@
 import s from "./ImageGalleryItem.module.scss";
 import { nanoid } from "nanoid";
+import PropTypes from "prop-types";
 
 const ImageGalleryItem = ({ images, onClick }) => {
   return images.map((el) => {
@@ -22,3 +23,8 @@ const ImageGalleryItem = ({ images, onClick }) => {
 };
 
 export default ImageGalleryItem;
+
+ImageGalleryItem.propTypes = {
+  images: PropTypes.array.isRequired,
+  onClick: PropTypes.func.isRequired,
+};

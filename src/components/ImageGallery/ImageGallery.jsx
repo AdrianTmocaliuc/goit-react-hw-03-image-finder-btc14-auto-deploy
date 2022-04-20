@@ -4,6 +4,7 @@ import ImageGalleryItem from "./../ImageGalleryItem/ImageGalleryItem";
 import Modal from "components/Modal/Modal";
 import Loader from "components/Loader/Loader";
 import Button from "components/Button/Button";
+import PropTypes from "prop-types";
 
 class ImageGallery extends Component {
   state = {
@@ -41,3 +42,12 @@ class ImageGallery extends Component {
 }
 
 export default ImageGallery;
+
+ImageGallery.propTypes = {
+  modalShow: PropTypes.bool.isRequired,
+  largeImage: PropTypes.string.isRequired,
+  images: PropTypes.array.isRequired,
+  loadMore: PropTypes.bool.isRequired,
+  totalImages: PropTypes.number.isRequired,
+  onClickLoadMore: PropTypes.func.isRequired,
+};

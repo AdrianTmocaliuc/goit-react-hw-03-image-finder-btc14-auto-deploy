@@ -1,5 +1,6 @@
 import { Component } from "react";
 import s from "./Modal.module.scss";
+import PropTypes from "prop-types";
 
 class Modal extends Component {
   componentDidMount() {
@@ -33,3 +34,7 @@ class Modal extends Component {
 }
 
 export default Modal;
+
+Modal.propTypes = {
+  largeImage: PropTypes.string.isRequired,
+};
