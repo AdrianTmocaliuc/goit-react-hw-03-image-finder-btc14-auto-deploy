@@ -11,8 +11,6 @@ class Searchbar extends Component {
     this.setState({ inputText: target.value.toLowerCase() });
   };
 
-  // console.log(first)
-
   onSubmitForm = (e) => {
     const { inputText } = this.state;
     e.preventDefault();
