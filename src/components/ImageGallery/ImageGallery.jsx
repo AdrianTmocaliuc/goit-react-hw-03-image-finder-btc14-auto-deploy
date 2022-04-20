@@ -23,8 +23,6 @@ class ImageGallery extends Component {
     const { largeImage, modalShow } = this.state;
     const { images, loadMore, onClickLoadMore, totalImages } = this.props;
     const { onClickImage, toggleModal } = this;
-    console.log(images.length);
-    console.log(totalImages);
 
     return (
       <>
