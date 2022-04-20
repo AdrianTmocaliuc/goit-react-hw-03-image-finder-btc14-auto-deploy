@@ -39,7 +39,7 @@ class App extends Component {
   }
 
   async componentDidUpdate(prevProps, prevState) {
-    const { inputText, totalImages } = this.state;
+    // const { inputText, totalImages } = this.state;
     const checkState = prevState.inputText !== this.state.inputText;
 
     if (checkState) {
