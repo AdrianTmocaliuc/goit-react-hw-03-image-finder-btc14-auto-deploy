@@ -14,7 +14,7 @@ const ImageGalleryItem = ({ images, onClick }) => {
         <img
           className={s.ImageGalleryItem_image}
           src={el.webformatURL}
-          alt="Image"
+          alt={el.id}
         />
       </li>
     );
