@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/goit-react-hw-03-image-finder-btc14-auto-deploy/static/css/main.6da23cdc.css",
+    "main.js": "/goit-react-hw-03-image-finder-btc14-auto-deploy/static/js/main.7c977e5a.js",
+    "index.html": "/goit-react-hw-03-image-finder-btc14-auto-deploy/index.html",
+    "main.6da23cdc.css.map": "/goit-react-hw-03-image-finder-btc14-auto-deploy/static/css/main.6da23cdc.css.map",
+    "main.7c977e5a.js.map": "/goit-react-hw-03-image-finder-btc14-auto-deploy/static/js/main.7c977e5a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6da23cdc.css",
+    "static/js/main.7c977e5a.js"
+  ]
+}
